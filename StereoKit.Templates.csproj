@@ -6,7 +6,11 @@
     <PackageId>StereoKit.Templates</PackageId>
     <Title>StereoKit dotnet templates</Title>
     <Authors>StereoKit</Authors>
-    <Description></Description>
+    <PackageProjectUrl>https://github.com/StereoKit/StereoKit.Templates</PackageProjectUrl>
+    <PackageIcon>images/StereoKitLogo64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Dotnet new templates for making StereoKit .NET Core compatible projects via CLI.</Description>
     <PackageTags>dotnet-new;templates;stereokit</PackageTags>
 
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -19,6 +23,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None    Pack="true" Include="README.md" PackagePath="\"/>
+    <None    Pack="true" Include="images\StereoKitLogo64.png" PackagePath="images\" />
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\.vs\**;templates\**\*.user" />
     <Compile Remove="**\*" />
   </ItemGroup>
