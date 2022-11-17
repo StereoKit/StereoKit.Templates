@@ -1,0 +1,28 @@
+name: Build and Publish
+
+on:
+  pull_request:
+    types: [ opened, closed ]
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    env:
+      PROJECT: StereoKit.Templates.csproj
+      
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore $PROJECT
+    - name: Pack
+      run: dotnet pack --configuration Release $PROJECT
+    - name: Publish
+      if: github.event.pull_request.merged == true
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
