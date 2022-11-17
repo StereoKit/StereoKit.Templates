@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "StereoKit",
+	"classifications": [ "StereoKit", "Desktop" ],
+	"identity": "StereoKitTemplates.NetCoreProject",
+	"name": "StereoKit: .NET Core project",
+	"shortName": "sk-netcore",
+	"tags": {
+		"language": "C#",
+		"type": "project"
+	},
+	"sourceName": "SKTemplate_NetCore",
+	"primaryOutputs": [{
+		"path": "SKTemplate_NetCore.csproj"        
+	}],
+	"postActions": [{
+		"description": "Restore NuGet packages required by this project.",
+		"manualInstructions": [ { "text": "Run 'dotnet restore'" } ],
+		"actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+		"continueOnError": true
+	}]
+}

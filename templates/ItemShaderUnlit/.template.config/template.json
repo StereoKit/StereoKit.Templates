@@ -1,0 +1,20 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "StereoKit",
+	"classifications": [ "StereoKit", "Shader" ],
+	"identity": "StereoKitTemplates.ShaderUnlit",
+	"name": "StereoKit Shader: Unlit",
+	"shortName": "skshader-unlit",
+	"tags": {
+		"language": "HLSL",
+		"type": "item"
+	},
+	"symbols": {
+		"name":{
+			"type": "parameter",
+			"replaces": "SKShaderUnlit",
+			"fileRename": "SKShaderUnlit",
+			"defaultValue": "unlit"
+		}
+	}
+}

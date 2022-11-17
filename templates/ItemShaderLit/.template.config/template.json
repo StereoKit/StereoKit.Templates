@@ -1,0 +1,20 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "StereoKit",
+	"classifications": [ "StereoKit", "Shader" ],
+	"identity": "StereoKitTemplates.ShaderLit",
+	"name": "StereoKit Shader: Lit",
+	"shortName": "skshader-lit",
+	"tags": {
+		"language": "HLSL",
+		"type": "item"
+	},
+	"symbols": {
+		"name":{
+			"type": "parameter",
+			"replaces": "SKShaderLit",
+			"fileRename": "SKShaderLit",
+			"defaultValue": "lit"
+		}
+	}
+}

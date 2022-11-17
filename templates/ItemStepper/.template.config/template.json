@@ -1,0 +1,20 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "StereoKit",
+	"classifications": [ "StereoKit", "Code" ],
+	"identity": "StereoKitTemplates.IStepper",
+	"name": "StereoKit Item: IStepper",
+	"shortName": "skstepper",
+	"tags": {
+		"language": "C#",
+		"type": "item"
+	},
+	"symbols": {
+		"name":{
+			"type": "parameter",
+			"replaces": "IStepperTemplate",
+			"fileRename": "IStepperTemplate",
+			"defaultValue": "Stepper"
+		}
+	}
+}
