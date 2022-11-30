@@ -16,8 +16,8 @@ namespace SKTemplate_Maui;
 [IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "org.khronos.openxr.intent.category.IMMERSIVE_HMD", "com.oculus.intent.category.VR", Intent.CategoryLauncher })]
 public class MainActivity : AppCompatActivity, ISurfaceHolderCallback2
 {
-	App                app;
-	Android.Views.View surface;
+	App  app;
+	View surface;
 
 	protected override void OnCreate(Bundle savedInstanceState)
 	{
