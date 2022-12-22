@@ -8,13 +8,5 @@
 	"tags": {
 		"language": "C#",
 		"type": "item"
-	},
-	"symbols": {
-		"name":{
-			"type": "parameter",
-			"replaces": "IStepperTemplate",
-			"fileRename": "IStepperTemplate",
-			"defaultValue": "Stepper"
-		}
 	}
 }

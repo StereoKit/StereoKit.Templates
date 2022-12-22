@@ -8,13 +8,5 @@
 	"tags": {
 		"language": "HLSL",
 		"type": "item"
-	},
-	"symbols": {
-		"name":{
-			"type": "parameter",
-			"replaces": "SKShaderUnlit",
-			"fileRename": "SKShaderUnlit",
-			"defaultValue": "unlit"
-		}
 	}
 }
