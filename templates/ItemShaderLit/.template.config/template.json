@@ -5,6 +5,7 @@
 	"identity": "StereoKitTemplates.ShaderLit",
 	"name": "StereoKit Shader: Lit",
 	"shortName": "skshader-lit",
+	"sourceName": "SKShaderLit",
 	"tags": {
 		"language": "HLSL",
 		"type": "item"

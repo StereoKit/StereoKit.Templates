@@ -5,6 +5,7 @@
 	"identity": "StereoKitTemplates.IStepper",
 	"name": "StereoKit Item: IStepper",
 	"shortName": "skstepper",
+	"sourceName": "IStepperTemplate",
 	"tags": {
 		"language": "C#",
 		"type": "item"

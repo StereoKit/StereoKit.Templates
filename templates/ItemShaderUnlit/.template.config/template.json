@@ -5,6 +5,7 @@
 	"identity": "StereoKitTemplates.ShaderUnlit",
 	"name": "StereoKit Shader: Unlit",
 	"shortName": "skshader-unlit",
+	"sourceName": "SKShaderUnlit",
 	"tags": {
 		"language": "HLSL",
 		"type": "item"
