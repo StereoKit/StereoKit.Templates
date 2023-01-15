@@ -4,7 +4,7 @@ using StereoKit;
 // Initialize StereoKit
 SKSettings settings = new SKSettings
 {
-	appName      = "SKTemplate_NetCore",
+	appName      = "SKTemplate_Net",
 	assetsFolder = "Assets",
 };
 if (!SK.Initialize(settings))

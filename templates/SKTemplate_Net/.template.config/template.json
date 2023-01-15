@@ -5,14 +5,14 @@
 	"identity": "StereoKitTemplates.NetCoreProject",
 	"name": "StereoKit: .NET Core project",
 	"description": "A starter template for Mixed Reality desktop VR projects using StereoKit and .NET Core! Super fast iteration times, and great for Windows and Linux based headsets.",
-	"shortName": "sk-netcore",
+	"shortName": "sk-net",
 	"tags": {
 		"language": "C#",
 		"type": "project"
 	},
-	"sourceName": "SKTemplate_NetCore",
+	"sourceName": "SKTemplate_Net",
 	"primaryOutputs": [{
-		"path": "SKTemplate_NetCore.csproj"        
+		"path": "SKTemplate_Net.csproj"        
 	}],
 	"postActions": [{
 		"description": "Restore NuGet packages required by this project.",
