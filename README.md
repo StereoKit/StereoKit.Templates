@@ -17,6 +17,17 @@ dotnet run
 dotnet new skshader-unlit -n test_shader -o Assets
 ```
 
+## Pre-requisites
+
+The only pre-requisite for this is the .NET SDK! If you don't have the `dotnet` command, you can install this via winget:
+
+```bash
+winget install Microsoft.DotNet.SDK.7
+# Restart the Terminal to refresh your Path variable
+```
+
+VS Code can also pair nicely with these templates, but they work just as well with Visual Studio "Prime".
+
 ### Project templates:
 
 |Id      |Project    | Description                                        |
