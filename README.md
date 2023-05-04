@@ -30,10 +30,11 @@ VS Code can also pair nicely with these templates, but they work just as well wi
 
 ### Project templates:
 
-|Id      |Project    | Description                                        |
-|--------|-----------|----------------------------------------------------|
-|sk-net  |.NET Core  |Simpler project for Windows and Linux desktop XR.   |
-|sk-multi|Multitarget|Cross-platform project for Android/Windows/Linux XR.|
+|Id       |Project    | Description                                        |
+|---------|-----------|----------------------------------------------------|
+|sk-net   |.NET Core  |Simpler project for Windows and Linux desktop XR.   |
+|sk-multi |Multitarget|Cross-platform project for Android/Windows/Linux XR.|
+|sk-sketch|.NET Core  |Bare-bones XR template for small code sketches.     |
 
 ### Item templates:
 
