@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 7.0.x
     - name: Test
       shell: pwsh
-      run: Test.ps1 -mode build_in_place
+      run: .\Test.ps1 -mode build_in_place
     - name: Restore dependencies
       run: dotnet restore $PROJECT
     - name: Pack
