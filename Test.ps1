@@ -39,6 +39,7 @@ if ($mode -eq 'run_in_place') {
     if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
 } elseif ($mode -eq 'build_in_place') {
     Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Maui"
+    & dotnet workload restore
     & dotnet build --framework=net7.0
     Pop-Location
     if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
