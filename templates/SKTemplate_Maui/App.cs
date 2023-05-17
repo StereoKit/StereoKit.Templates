@@ -23,7 +23,7 @@ public class App
 			Material.UI);
 
 		floorMaterial = new Material("floor.hlsl");
-		floorMaterial.Transparency = Transparency.Blend;
+		floorMaterial.Transparency = Transparency.Blend
 	}
 
 	public void Step()

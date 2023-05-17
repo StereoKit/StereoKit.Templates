@@ -7,11 +7,11 @@ For just a reinstall
 .\Test.ps1 -reinstall
 
 To test the templates without build/reinstall
-.\Test.ps1 -mode inplace
+.\Test.ps1 -mode run_in_place
 #>
 
 param(
-    [ValidateSet('inplace','new','none')]
+    [ValidateSet('run_in_place','build_in_place','new','none')]
     [string]$mode = 'none',
     [switch]$reinstall = $false
 )
@@ -22,18 +22,36 @@ if ($reinstall -eq $true) {
     & dotnet new install "$PSScriptRoot\bin\Release\StereoKit.Templates.*.nupkg"
 }
 
-if ($mode -eq 'inplace') {
+if ($mode -eq 'run_in_place') {
     Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Maui"
     & dotnet run --framework=net7.0
     Pop-Location
+    if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
 
     Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Net"
     & dotnet run
     Pop-Location
+    if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
 
     Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Sketch"
     & dotnet run
     Pop-Location
+    if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
+} elseif ($mode -eq 'build_in_place') {
+    Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Maui"
+    & dotnet build --framework=net7.0
+    Pop-Location
+    if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
+
+    Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Net"
+    & dotnet build
+    Pop-Location
+    if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
+
+    Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Sketch"
+    & dotnet build
+    Pop-Location
+    if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
 } elseif($mode -eq 'new') {
     if (!(Test-Path -Path 'test')) {
         New-Item -Path . -Name 'test' -ItemType "directory" | Out-Null
