@@ -10,9 +10,9 @@ public class App
 		displayPreference = DisplayMode.MixedReality
 	};
 
-	Pose  cubePose = new Pose(0, 0, -0.5f, Quat.Identity);
+	Pose  cubePose = new Pose(0, 0, -0.5f);
 	Model cube;
-	Matrix   floorTransform = Matrix.TS(new Vec3(0, -1.5f, 0), new Vec3(30, 0.1f, 30));
+	Matrix   floorTransform = Matrix.TS(0, -1.5f, 0, new Vec3(30, 0.1f, 30));
 	Material floorMaterial;
 
 	public void Init()
@@ -20,9 +20,9 @@ public class App
 		// Create assets used by the app
 		cube = Model.FromMesh(
 			Mesh.GenerateRoundedCube(Vec3.One * 0.1f, 0.02f),
-			Default.MaterialUI);
+			Material.UI);
 
-		floorMaterial = new Material(Shader.FromFile("floor.hlsl"));
+		floorMaterial = new Material("floor.hlsl");
 		floorMaterial.Transparency = Transparency.Blend;
 	}
 

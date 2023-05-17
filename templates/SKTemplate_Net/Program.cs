@@ -12,13 +12,13 @@ if (!SK.Initialize(settings))
 
 
 // Create assets used by the app
-Pose  cubePose = new Pose(0,0,-0.5f, Quat.Identity);
+Pose  cubePose = new Pose(0, 0, -0.5f);
 Model cube     = Model.FromMesh(
 	Mesh.GenerateRoundedCube(Vec3.One*0.1f, 0.02f),
-	Default.MaterialUI);
+	Material.UI);
 
 Matrix   floorTransform = Matrix.TS(0, -1.5f, 0, new Vec3(30, 0.1f, 30));
-Material floorMaterial  = new Material(Shader.FromFile("floor.hlsl"));
+Material floorMaterial  = new Material("floor.hlsl");
 floorMaterial.Transparency = Transparency.Blend;
 
 
