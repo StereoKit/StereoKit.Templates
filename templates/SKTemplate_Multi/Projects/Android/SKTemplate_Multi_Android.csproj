@@ -12,6 +12,10 @@
 		<SKOpenXRLoader>Standard</SKOpenXRLoader>
 		<SKAssetFolder>../../Assets</SKAssetFolder>
 		<SKAssetDestination>Assets</SKAssetDestination>
+
+		<!--Suppress targetSdkVersion 29 warnings. XR devices use old versions
+		    of Android.-->
+		<NoWarn>XA4211;XA1006;XA4301</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
