@@ -28,6 +28,11 @@ if ($mode -eq 'run_in_place') {
     Pop-Location
     if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
 
+    Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Multi"
+    & dotnet run
+    Pop-Location
+    if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
+
     Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Net"
     & dotnet run
     Pop-Location
