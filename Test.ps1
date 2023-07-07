@@ -18,10 +18,16 @@ param(
     [switch]$reinstall = $false
 )
 
+$fileData = Get-Content -path "$PSScriptRoot\StereoKit.Templates.csproj" -Raw;
+$fileData -match '<PackageVersion>(?<ver>.*)</PackageVersion>' | Out-Null
+$version = $Matches.ver
+
+Write-Host "Testing StereoKit.Templates $version"
+
 if ($reinstall -eq $true) {
     & dotnet new uninstall StereoKit.Templates
     & dotnet pack --configuration Release
-    & dotnet new install "$PSScriptRoot\bin\Release\StereoKit.Templates.*.nupkg"
+    & dotnet new install "$PSScriptRoot\bin\Release\StereoKit.Templates.$version.nupkg"
 }
 
 if ($mode -eq 'run_in_place') {
