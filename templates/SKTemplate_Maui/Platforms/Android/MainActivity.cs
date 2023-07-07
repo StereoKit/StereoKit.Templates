@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using AndroidX.AppCompat.App;
-using Java.Lang;
 using StereoKit;
 using System;
 using System.Threading.Tasks;
@@ -21,20 +20,9 @@ public class MainActivity : AppCompatActivity, ISurfaceHolderCallback2
 
 	protected override void OnCreate(Bundle savedInstanceState)
 	{
-		JavaSystem.LoadLibrary("openxr_loader");
-		JavaSystem.LoadLibrary("StereoKitC");
-
-		// Set up a surface for StereoKit to draw on
-		Window.TakeSurface(this);
-		Window.SetFormat(Format.Unknown);
-		surface = new(this);
-		SetContentView(surface);
-		surface.RequestFocus();
-
 		base.OnCreate(savedInstanceState);
 		Microsoft.Maui.ApplicationModel.Platform.Init(this, savedInstanceState);
-
-		Run(Handle);
+		Run();
 	}
 	public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
 	{
@@ -43,11 +31,15 @@ public class MainActivity : AppCompatActivity, ISurfaceHolderCallback2
 	}
 
 	static bool running = false;
-	void Run(IntPtr activityHandle)
+	void Run()
 	{
-		if (running)
-			return;
+		if (running) return;
 		running = true;
+
+		// Before anything else, give StereoKit the Activity. This should
+		// be set before any other SK calls, otherwise native library
+		// loading may fail.
+		SK.AndroidActivity = this;
 
 		Task.Run(() => {
 			// If the app has a constructor that takes a string array, then
@@ -60,17 +52,26 @@ public class MainActivity : AppCompatActivity, ISurfaceHolderCallback2
 			if (app == null)
 				throw new System.Exception("StereoKit loader couldn't construct an instance of the App!");
 
+			// Set up a surface for StereoKit to draw on, this is only really
+			// important for flatscreen experiences.
+			if (app.Settings.displayPreference == DisplayMode.Flatscreen)
+			{
+				Window.TakeSurface(this);
+				Window.SetFormat(Format.Unknown);
+				surface = new View(this);
+				SetContentView(surface);
+				surface.RequestFocus();
+			}
+
 			// Initialize StereoKit, and the app
-			SKSettings settings = app.Settings;
-			settings.androidActivity = activityHandle;
-			if (!SK.Initialize(settings))
+			if (!SK.Initialize(app.Settings))
 				return;
 			app.Init();
 
 			// Now loop until finished, and then shut down
 			SK.Run(app.Step);
 
-			Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+			Process.KillProcess(Process.MyPid());
 		});
 	}
 

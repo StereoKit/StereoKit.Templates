@@ -16,10 +16,11 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
+    - name: Test
+      shell: pwsh
+      run: .\Test.ps1 -mode build_in_place
     - name: Restore dependencies
       run: dotnet restore $PROJECT
     - name: Pack
       run: dotnet pack --configuration Release $PROJECT
-    - name: Publish
-      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
