@@ -38,7 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StereoKit" Version="0.3.7-preview.1575" />
+		<PackageReference Include="StereoKit" Version="0.3.7-preview.1583" />
 	</ItemGroup>
 
 </Project>
