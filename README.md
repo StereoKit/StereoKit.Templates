@@ -6,10 +6,11 @@ These [StereoKit](https://stereokit.net) templates are designed to be used with 
 
 ```bash
 # Install the templates!
-dotnet new --install StereoKit.Templates
+dotnet new install StereoKit.Templates
 
 # Create a .NET Core based StereoKit project, and run it
 mkdir StereoKitProjectName
+cd StereoKitProjectName
 dotnet new sk-net
 dotnet run
 
