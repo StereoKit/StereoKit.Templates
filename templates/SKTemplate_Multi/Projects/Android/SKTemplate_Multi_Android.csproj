@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net7.0-android</TargetFramework>
+		<RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
 		<SupportedOSPlatformVersion>29</SupportedOSPlatformVersion>
 		<OutputType>Exe</OutputType>
 		<ApplicationId>com.companyname.SKTemplate_Multi</ApplicationId>
@@ -10,7 +11,7 @@
 		<ReadOnlyProject>true</ReadOnlyProject>
 
 		<SKOpenXRLoader>Standard</SKOpenXRLoader>
-		<SKAssetFolder>../../Assets</SKAssetFolder>
+		<SKAssetFolder>..\..\Assets</SKAssetFolder>
 		<SKAssetDestination>Assets</SKAssetDestination>
 
 		<!--Suppress targetSdkVersion 29 warnings. XR devices use old versions
@@ -19,7 +20,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StereoKit" Version="0.3.7-preview.10" />
+		<PackageReference Include="StereoKit" Version="0.3.7-preview.1570" />
 	</ItemGroup>
 
 	<!--Point Android to the right folders, otherwise these default to the root
@@ -31,19 +32,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="../../**/*.cs" Exclude="../../obj/**;../../bin/**;../../Projects/**" />
+		<Compile Include="..\..\**\*.cs" Exclude="..\..\obj\**;..\..\bin\**;..\..\Projects\**" />
 
 		<!--Don't compile .NET Core code in this project.-->
-		<Compile Remove="../../**/*.Net.cs" />
-		<Compile Remove="../../Platforms/Net/**/*.cs" />
+		<Compile Remove="..\..\**\*.Net.cs" />
+		<Compile Remove="..\..\Platforms\Net\**\*.cs" />
 
 		<!--Hide everything in this project, otherwise it's a lot of
 		    duplication that creates noise.-->
-		<Compile Update="../../**" Visible="false" />
-		<None    Update="../../**" Visible="false" />
-		<Content Update="../../**" Visible="false" />
+		<Compile Update="..\..\**" Visible="false" />
+		<None    Update="..\..\**" Visible="false" />
+		<Content Update="..\..\**" Visible="false" />
 
-		<Compile Update="../../**/*.Android.cs" Visible="true" />
-		<Compile Update="../../Platforms/Android/**/*.cs" Visible="true" />
+		<Compile Update="..\..\**\*.Android.cs" Visible="true" />
+		<Compile Update="..\..\Platforms\Android\**\*.cs" Visible="true" />
 	</ItemGroup>
 </Project>
