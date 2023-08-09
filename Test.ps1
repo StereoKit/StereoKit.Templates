@@ -13,7 +13,7 @@ To test the templates without build/reinstall
 param(
     [ValidateSet('run_in_place','build_in_place','new','none')]
     [string]$mode = 'none',
-    [ValidateSet('all','sk-multi','sk-net','sk-sketch','sk-maui')]
+    [ValidateSet('all','sk-multi','sk-net','sk-sketch')]
     [string]$template = 'all',
     [switch]$reinstall = $false
 )
@@ -31,12 +31,6 @@ if ($reinstall -eq $true) {
 }
 
 if ($mode -eq 'run_in_place') {
-    if ($template -eq 'all' -or $template -eq 'sk-maui') {
-        Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Maui"
-        & dotnet run --framework=net7.0
-        Pop-Location
-        if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
-    }
 
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
         Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Multi"
@@ -46,7 +40,6 @@ if ($mode -eq 'run_in_place') {
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
 
-    
     if ($template -eq 'all' -or $template -eq 'sk-net') {
         Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Net"
         & dotnet run
@@ -61,14 +54,6 @@ if ($mode -eq 'run_in_place') {
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
 } elseif ($mode -eq 'build_in_place') {
-    
-    if ($template -eq 'all' -or $template -eq 'sk-maui') {
-        #Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Maui"
-        #& dotnet workload restore
-        #& dotnet build --framework=net7.0
-        #Pop-Location
-        #if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
-    }
 
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
         Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Multi"
@@ -107,9 +92,6 @@ if ($mode -eq 'run_in_place') {
     if (!(Test-Path -Path 'sketch')) {
         New-Item -Path . -Name 'sketch' -ItemType "directory" | Out-Null
     }
-    if (!(Test-Path -Path 'maui')) {
-        New-Item -Path . -Name 'maui' -ItemType "directory" | Out-Null
-    }
     Pop-Location
 
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
@@ -131,13 +113,6 @@ if ($mode -eq 'run_in_place') {
         Push-Location -Path "$PSScriptRoot\test\sketch"
         & dotnet new sk-sketch
         & dotnet run
-        Pop-Location
-    }
-
-    if ($template -eq 'all' -or $template -eq 'sk-maui') {
-        Push-Location -Path "$PSScriptRoot\test\maui"
-        & dotnet new sk-maui
-        & dotnet run --framework=net7.0
         Pop-Location
     }
 
