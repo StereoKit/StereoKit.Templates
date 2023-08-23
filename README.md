@@ -27,6 +27,12 @@ winget install Microsoft.DotNet.SDK.7
 # Restart the Terminal to refresh your Path variable
 ```
 
+Or on some versions of Linux such as Ubuntu, you may find this in your package manager. If not, check [Microsoft's instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux) for installing dotnet on your Linux distribution.
+
+```bash
+sudo apt-get install dotnet-sdk-7.0
+```
+
 VS Code can also pair nicely with these templates, but they work just as well with Visual Studio "Prime".
 
 ### Project templates:
