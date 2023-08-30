@@ -1,6 +1,5 @@
 #include <stereokit.hlsli>
 
-//--name = app/SKShaderUnlit
 //--color:color = 1,1,1,1
 //--tex_scale   = 1
 //--diffuse     = white
@@ -28,13 +27,14 @@ psIn vs(vsIn input, uint id : SV_InstanceID) {
 	o.view_id = id % sk_view_count;
 	id        = id / sk_view_count;
 
-	float4 world = mul(input.pos.xyz, sk_inst[id].world);
-	o.pos        = mul(world,         sk_viewproj[o.view_id]);
+	float4 world = mul(input.pos, sk_inst[id].world);
+	o.pos        = mul(world,     sk_viewproj[o.view_id]);
 
 	o.uv    = input.uv * tex_scale;
 	o.color = input.col * color * sk_inst[id].color;
 	return o;
 }
+
 float4 ps(psIn input) : SV_TARGET {
 	float4 col = diffuse.Sample(diffuse_s, input.uv);
 	return col * input.color; 

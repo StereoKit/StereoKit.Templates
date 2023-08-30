@@ -1,39 +1,77 @@
 # StereoKit.Templates
 
-These [StereoKit](https://stereokit.net) templates are designed to be used with the `dotnet new` command, for easy use via command-line and environments like Visual Studio Code! The NuGet package for these templates do _not_ need to be referenced from your project, but instead should be installed for `dotnet` to recognize them.
+These [StereoKit](https://stereokit.net) templates are designed to be used with the `dotnet new` command for command-line and environments like Visual Studio Code, and also work with Visual Studio 2022's "New Project" interface! You do not need to clone this repository, these templates can be installed easily via the NuGet package.
 
-## Usage
+## Install
 
 ```bash
 # Install the templates!
 dotnet new install StereoKit.Templates
-
-# Create a .NET Core based StereoKit project, and run it
-mkdir StereoKitProjectName
-cd StereoKitProjectName
-dotnet new sk-net
-dotnet run
-
-# Add an unlit shader named "test_shader" to the Assets folder
-dotnet new skshader-unlit -n test_shader -o Assets
 ```
 
-## Pre-requisites
+### Pre-requisites
 
-The only pre-requisite for this is the .NET SDK! If you don't have the `dotnet` command, you can install this via winget:
+If you don't have the .NET SDK, or the `dotnet` command, you can install this via winget:
 
 ```bash
 winget install Microsoft.DotNet.SDK.7
 # Restart the Terminal to refresh your Path variable
 ```
 
-Or on some versions of Linux such as Ubuntu, you may find this in your package manager. If not, check [Microsoft's instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux) for installing dotnet on your Linux distribution.
+On Linux, it may be as simple as this! If not, check [Microsoft's instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux) for installing `dotnet` on your Linux distribution.
 
 ```bash
 sudo apt-get install dotnet-sdk-7.0
 ```
 
-VS Code can also pair nicely with these templates, but they work just as well with Visual Studio "Prime".
+## Usage
+
+The `sk-net` template is a good place to start. It works with VR on Windows and Linux, and provides a good Simulator for development.
+
+```bash
+# Create a .NET Core based StereoKit project, and run it
+mkdir SKProjectName
+cd SKProjectName
+dotnet new sk-net
+dotnet run
+```
+
+### Android Projects
+
+The `sk-multi` template can also deploy to Android devices. While this experience is mostly seamless when using Visual Studio 2022, using CLI or VS Code is not as simple as `dotnet run`. Instead, you must build an apk and install that:
+
+```bash
+# Start with an multiplatform project
+dotnet new sk-multi
+# You _can_ still run a local desktop verison like this
+dotnet run
+
+# The build command for making the Android APK
+dotnet publish -c Release Projects\Android\SKProjectName_Android.csproj
+
+# Install on device
+adb install Projects\Android\bin\Release\net7.0-android\publish\com.companyname.SKProjectName-Signed.apk
+# Run the APK on device
+adb shell monkey -p com.companyname.SKProjectName 1
+```
+
+Additional information about signing apks while building like this [can be found here](https://learn.microsoft.com/en-us/dotnet/maui/android/deployment/publish-cli).
+
+### Items
+
+```bash
+# Add an unlit shader named "test_shader" to the Assets folder
+dotnet new skshader-unlit -n test_shader -o Assets
+
+# Add an shader with default lighting named "test_lit_shader" to the Assets
+# folder
+dotnet new skshader-lit -n test_lit_shader -o Assets
+
+# Add a basic IStepper template called SomeSystem
+dotnet new skstepper -n SomeSystem.cs
+```
+
+## Templates
 
 ### Project templates:
 

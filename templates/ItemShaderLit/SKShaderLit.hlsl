@@ -1,6 +1,5 @@
 #include <stereokit.hlsli>
 
-//--name = app/SKShaderLit
 //--color:color = 1,1,1,1
 //--tex_scale   = 1
 //--diffuse     = white

@@ -35,7 +35,7 @@ if ($mode -eq 'run_in_place') {
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
         Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Multi"
         & dotnet run
-        & dotnet build Projects/Android/SKTemplate_Multi_Android.csproj
+        & dotnet publish -c Release Projects/Android/SKTemplate_Multi_Android.csproj
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
@@ -59,7 +59,7 @@ if ($mode -eq 'run_in_place') {
         Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Multi"
         & dotnet workload restore
         & dotnet build
-        & dotnet build Projects/Android/SKTemplate_Multi_Android.csproj
+        & dotnet publish -c Release Projects/Android/SKTemplate_Multi_Android.csproj
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
@@ -98,7 +98,7 @@ if ($mode -eq 'run_in_place') {
         Push-Location -Path "$PSScriptRoot\test\multi"
         & dotnet new sk-multi
         & dotnet run
-        & dotnet build Projects/Android/multi_Android.csproj
+        & dotnet publish -c Release Projects/Android/multi_Android.csproj
         Pop-Location
     }
 
