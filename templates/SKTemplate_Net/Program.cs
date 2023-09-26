@@ -1,5 +1,4 @@
-﻿using System;
-using StereoKit;
+﻿using StereoKit;
 
 // Initialize StereoKit
 SKSettings settings = new SKSettings
@@ -8,7 +7,7 @@ SKSettings settings = new SKSettings
 	assetsFolder = "Assets",
 };
 if (!SK.Initialize(settings))
-	Environment.Exit(1);
+	return;
 
 
 // Create assets used by the app
