@@ -20,7 +20,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StereoKit" Version="0.3.7" />
+		<PackageReference Include="StereoKit" Version="0.3.8" />
 	</ItemGroup>
 
 	<!--Point Android to the right folders, otherwise these default to the root
