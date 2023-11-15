@@ -14,14 +14,14 @@ dotnet new install StereoKit.Templates
 If you don't have the .NET SDK, or the `dotnet` command, you can install this via winget:
 
 ```bash
-winget install Microsoft.DotNet.SDK.7
+winget install Microsoft.DotNet.SDK.8
 # Restart the Terminal to refresh your Path variable
 ```
 
 On Linux, it may be as simple as this! If not, check [Microsoft's instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux) for installing `dotnet` on your Linux distribution.
 
 ```bash
-sudo apt-get install dotnet-sdk-7.0
+sudo apt-get install dotnet-sdk-8.0
 ```
 
 ## Usage
@@ -43,9 +43,17 @@ The `sk-multi` template can also deploy to Android devices. While this experienc
 ```bash
 # Start with an multiplatform project
 dotnet new sk-multi
-# You _can_ still run a local desktop verison like this
+# You _can_ still run the StereoKit Simulator like this
 dotnet run
+# To run on Android, just run the Android flavored project!
+dotnet run --project Projects\Android\SKProjectName_Android.csproj
+```
 
+#### Publishing an APK
+
+You can also build and deploy an APK like this! This was the only way to do it in .NET 7, but may still be useful in some scenarios.
+
+```bash
 # The build command for making the Android APK
 dotnet publish -c Release Projects\Android\SKProjectName_Android.csproj
 
