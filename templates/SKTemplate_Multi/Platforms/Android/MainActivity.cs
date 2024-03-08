@@ -9,7 +9,7 @@ using System;
 using System.Reflection;
 using System.Threading;
 
-namespace SKTemplate_Multi;
+namespace SKTemplate_Multi._1;
 
 [Activity(Label = "@string/app_name", MainLauncher = true, Exported = true)]
 [IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "org.khronos.openxr.intent.category.IMMERSIVE_HMD", "com.oculus.intent.category.VR", Intent.CategoryLauncher })]

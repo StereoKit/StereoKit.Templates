@@ -10,7 +10,7 @@
 		"language": "C#",
 		"type": "solution"
 	},
-	"sourceName": "SKTemplate_Multi",
+	"sourceName": "SKTemplate_Multi.1",
 	"guids": [
 		"E44BC5AE-2671-46B5-845A-3C7CFBCFF86E",
 		"61654E9B-679C-44AD-8FDD-9302AF813D58",
@@ -23,8 +23,8 @@
 		]
 	}],
 	"primaryOutputs": [
-		{ "path": "SKTemplate_Multi.csproj" },
-		{ "path": "Projects/Android/SKTemplate_Multi_Android.csproj" }],
+		{ "path": "SKTemplate_Multi.1.csproj" },
+		{ "path": "Projects/Android/SKTemplate_Multi.1.Android.csproj" }],
 	"postActions": [{
 		"description": "Restore NuGet packages required by this project.",
 		"manualInstructions": [ { "text": "Run 'dotnet restore'" } ],

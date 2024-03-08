@@ -4,10 +4,10 @@
 		<RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
 		<SupportedOSPlatformVersion>29</SupportedOSPlatformVersion>
 		<OutputType>Exe</OutputType>
-		<ApplicationId>com.companyname.SKTemplate_Multi</ApplicationId>
+		<ApplicationId>com.companyname.sktemplate_multi._1</ApplicationId>
 		<ApplicationVersion>1</ApplicationVersion>
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<RootNamespace>SKTemplate_Multi</RootNamespace>
+		<RootNamespace>SKTemplate_Multi._1</RootNamespace>
 		<ReadOnlyProject>true</ReadOnlyProject>
 
 		<SKOpenXRLoader>Standard</SKOpenXRLoader>

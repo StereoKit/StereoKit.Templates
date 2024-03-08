@@ -83,34 +83,38 @@ if ($mode -eq 'run_in_place') {
     }
 
     Push-Location -Path "$PSScriptRoot\test"
-    if (!(Test-Path -Path 'multi')) {
-        New-Item -Path . -Name 'multi' -ItemType "directory" | Out-Null
+    $multiName = 'Multi-with_Crazy name'
+    if (!(Test-Path -Path $multiName)) {
+        New-Item -Path . -Name $multiName -ItemType "directory" | Out-Null
     }
-    if (!(Test-Path -Path 'net')) {
-        New-Item -Path . -Name 'net' -ItemType "directory" | Out-Null
+    $netName = "net project_Name"
+    if (!(Test-Path -Path $netName)) {
+        New-Item -Path . -Name $netName -ItemType "directory" | Out-Null
     }
-    if (!(Test-Path -Path 'sketch')) {
-        New-Item -Path . -Name 'sketch' -ItemType "directory" | Out-Null
+    $sketchName = "Sketch Project"
+    if (!(Test-Path -Path $sketchName)) {
+        New-Item -Path . -Name $sketchName -ItemType "directory" | Out-Null
     }
     Pop-Location
 
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
-        Push-Location -Path "$PSScriptRoot\test\multi"
+        Push-Location -Path "$PSScriptRoot\test\$multiName"
         & dotnet new sk-multi
+        & dotnet build
         & dotnet run
-        & dotnet publish -c Release Projects/Android/multi_Android.csproj
+        & dotnet publish -c Release "Projects/Android/$($multiName)_Android.csproj"
         Pop-Location
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-net') {
-        Push-Location -Path "$PSScriptRoot\test\net"
+        Push-Location -Path "$PSScriptRoot\test\$netName"
         & dotnet new sk-net
         & dotnet run
         Pop-Location
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-sketch') {
-        Push-Location -Path "$PSScriptRoot\test\sketch"
+        Push-Location -Path "$PSScriptRoot\test\$sketchName"
         & dotnet new sk-sketch
         & dotnet run
         Pop-Location

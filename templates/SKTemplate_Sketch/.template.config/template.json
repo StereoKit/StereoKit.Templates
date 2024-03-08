@@ -10,9 +10,9 @@
 		"language": "C#",
 		"type": "project"
 	},
-	"sourceName": "SKTemplate_Sketch",
+	"sourceName": "SKTemplate_Sketch.1",
 	"primaryOutputs": [{
-		"path": "SKTemplate_Sketch.csproj"        
+		"path": "SKTemplate_Sketch.1.csproj"        
 	}],
 	"postActions": [{
 		"description": "Restore NuGet packages required by this project.",

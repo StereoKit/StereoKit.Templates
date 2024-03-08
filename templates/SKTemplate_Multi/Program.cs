@@ -1,6 +1,6 @@
 ﻿using StereoKit;
 
-namespace SKTemplate_Multi;
+namespace SKTemplate_Multi._1;
 
 class Program
 {
@@ -9,7 +9,7 @@ class Program
 		// Initialize StereoKit
 		SKSettings settings = new SKSettings
 		{
-			appName = "SKTemplate_Multi",
+			appName = "SKTemplate_Multi.1",
 			assetsFolder = "Assets",
 		};
 		if (!SK.Initialize(settings))
