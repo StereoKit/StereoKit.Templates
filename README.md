@@ -46,7 +46,7 @@ dotnet new sk-multi
 # You _can_ still run the StereoKit Simulator like this
 dotnet run
 # To run on Android, just run the Android flavored project!
-dotnet run --project Projects\Android\SKProjectName_Android.csproj
+dotnet run --project Projects\Android\SKProjectName.Android.csproj
 ```
 
 #### Publishing an APK
@@ -55,12 +55,12 @@ You can also build and deploy an APK like this! This was the only way to do it i
 
 ```bash
 # The build command for making the Android APK
-dotnet publish -c Release Projects\Android\SKProjectName_Android.csproj
+dotnet publish -c Release Projects\Android\SKProjectName.Android.csproj
 
 # Install on device
-adb install Projects\Android\bin\Release\net7.0-android\publish\com.companyname.SKProjectName-Signed.apk
+adb install Projects\Android\bin\Release\net7.0-android\publish\com.companyname.skprojectname-Signed.apk
 # Run the APK on device
-adb shell monkey -p com.companyname.SKProjectName 1
+adb shell monkey -p com.companyname.skprojectname 1
 ```
 
 Additional information about signing apks while building like this [can be found here](https://learn.microsoft.com/en-us/dotnet/maui/android/deployment/publish-cli).
