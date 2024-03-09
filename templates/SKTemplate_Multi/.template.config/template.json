@@ -8,15 +8,9 @@
 	"shortName": "sk-multi",
 	"tags": {
 		"language": "C#",
-		"type": "solution"
+		"type": "project"
 	},
 	"sourceName": "SKTemplate_Multi.1",
-	"guids": [
-		"E44BC5AE-2671-46B5-845A-3C7CFBCFF86E",
-		"61654E9B-679C-44AD-8FDD-9302AF813D58",
-		"9A19103F-16F7-4668-BE54-9A1E7A4F7556",
-		"868D1523-E0ED-466D-9439-D44C50373B05"
-	],
 	"sources":[{
 		"modifiers": [
 			{ "exclude": [ ".vs/**/*"] }
