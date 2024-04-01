@@ -24,7 +24,7 @@ floorMaterial.Transparency = Transparency.Blend;
 // Core application loop
 SK.Run(() =>
 {
-	if (SK.System.displayType == Display.Opaque)
+	if (Device.DisplayBlend == DisplayBlend.Opaque)
 		Mesh.Cube.Draw(floorMaterial, floorTransform);
 
 	UI.Handle("Cube", ref cubePose, cube.Bounds);
