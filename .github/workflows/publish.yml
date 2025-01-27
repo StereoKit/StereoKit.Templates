@@ -22,4 +22,4 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release $PROJECT
     - name: Publish
-      run: dotnet nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: dotnet nuget push **\*.nupkg -s 'https://api.nuget.org/v3/index.json' -k ${{secrets.NUGET_API_KEY}}
