@@ -12,7 +12,7 @@ using System.Threading;
 namespace SKTemplate_Multi._1;
 
 [Activity(Label = "@string/app_name", MainLauncher = true, Exported = true)]
-[IntentFilter(new[] { Intent.ActionMain }, Categories = new[] { "org.khronos.openxr.intent.category.IMMERSIVE_HMD", "com.oculus.intent.category.VR", Intent.CategoryLauncher })]
+[IntentFilter([Intent.ActionMain], Categories = ["org.khronos.openxr.intent.category.IMMERSIVE_HMD", "com.oculus.intent.category.VR", Intent.CategoryLauncher])]
 public class MainActivity : Activity, ISurfaceHolderCallback2
 {
 	View surface;

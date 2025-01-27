@@ -14,14 +14,14 @@ dotnet new install StereoKit.Templates
 If you don't have the .NET SDK, or the `dotnet` command, you can install this via winget:
 
 ```bash
-winget install Microsoft.DotNet.SDK.7
+winget install Microsoft.DotNet.SDK.9
 # Restart the Terminal to refresh your Path variable
 ```
 
 On Linux, it may be as simple as this! If not, check [Microsoft's instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux) for installing `dotnet` on your Linux distribution.
 
 ```bash
-sudo apt-get install dotnet-sdk-7.0
+sudo apt-get install dotnet-sdk-9.0
 ```
 
 ## Usage
@@ -58,7 +58,7 @@ You can also build and deploy an APK like this! This was the only way to do it i
 dotnet publish -c Release Projects\Android\SKProjectName.Android.csproj
 
 # Install on device
-adb install Projects\Android\bin\Release\net7.0-android\publish\com.companyname.skprojectname-Signed.apk
+adb install Projects\Android\bin\Release\net9.0-android\publish\com.companyname.skprojectname-Signed.apk
 # Run the APK on device
 adb shell monkey -p com.companyname.skprojectname 1
 ```
