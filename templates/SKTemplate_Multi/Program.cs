@@ -10,7 +10,6 @@ class Program
 		SKSettings settings = new SKSettings
 		{
 			appName = "SKTemplate_Multi.1",
-			assetsFolder = "Assets",
 		};
 		if (!SK.Initialize(settings))
 			return;
