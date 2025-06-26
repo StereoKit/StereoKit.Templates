@@ -98,15 +98,19 @@ if ($mode -eq 'run_in_place') {
     Pop-Location
 
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
+
+        Write-Host "## Testing sk-multi ##"
         Push-Location -Path "$PSScriptRoot\test\$multiName"
-        & dotnet new sk-multi
-        & dotnet build
+        & dotnet new sk-multi --allow-scripts Yes
+        Write-Host "## Testing sk-multi - desktop ##"
         & dotnet run
-        & dotnet publish -c Release "Projects/Android/$($multiName)_Android.csproj"
+        Write-Host "## Testing sk-multi - android ##"
+        & dotnet publish -c Release "Projects/Android/$($multiName).Android.csproj"
         Pop-Location
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-net') {
+        Write-Host "## Testing sk-net ##"
         Push-Location -Path "$PSScriptRoot\test\$netName"
         & dotnet new sk-net
         & dotnet run
@@ -114,6 +118,7 @@ if ($mode -eq 'run_in_place') {
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-sketch') {
+        Write-Host "## Testing sk-sketch ##"
         Push-Location -Path "$PSScriptRoot\test\$sketchName"
         & dotnet new sk-sketch
         & dotnet run
