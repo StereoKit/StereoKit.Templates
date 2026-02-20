@@ -14,14 +14,18 @@ dotnet new install StereoKit.Templates
 If you don't have the .NET SDK, or the `dotnet` command, you can install this via winget:
 
 ```bash
-winget install Microsoft.DotNet.SDK.9
+winget install Microsoft.DotNet.SDK.10
 # Restart the Terminal to refresh your Path variable
 ```
 
-On Linux, it may be as simple as this! If not, check [Microsoft's instructions](https://learn.microsoft.com/en-us/dotnet/core/install/linux) for installing `dotnet` on your Linux distribution.
+On Linux, please do _NOT_ install the .NET package via the OS package manager (`apt-get`, etc.)! These packages do _NOT_ connect to the Android workloads necessary for Android builds! Please instead use [Microsoft's install script](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual).
 
 ```bash
-sudo apt-get install dotnet-sdk-9.0
+# From the install script docs
+wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+chmod +x ./dotnet-install.sh
+
+./dotnet-install.sh --version latest
 ```
 
 ## Usage
