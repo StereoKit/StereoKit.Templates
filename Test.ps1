@@ -18,7 +18,7 @@ param(
     [switch]$reinstall = $false
 )
 
-$fileData = Get-Content -path "$PSScriptRoot\StereoKit.Templates.csproj" -Raw;
+$fileData = Get-Content -path "$PSScriptRoot/StereoKit.Templates.csproj" -Raw;
 $fileData -match '<PackageVersion>(?<ver>.*)</PackageVersion>' | Out-Null
 $version = $Matches.ver
 
@@ -27,13 +27,13 @@ Write-Host "Testing StereoKit.Templates $version"
 if ($reinstall -eq $true) {
     & dotnet new uninstall StereoKit.Templates
     & dotnet pack --configuration Release
-    & dotnet new install "$PSScriptRoot\bin\Release\StereoKit.Templates.$version.nupkg"
+    & dotnet new install "$PSScriptRoot/bin/Release/StereoKit.Templates.$version.nupkg"
 }
 
 if ($mode -eq 'run_in_place') {
 
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
-        Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Multi"
+        Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Multi"
         & dotnet run
         & dotnet publish -c Release Projects/Android/SKTemplate_Multi_Android.csproj
         Pop-Location
@@ -41,14 +41,14 @@ if ($mode -eq 'run_in_place') {
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-net') {
-        Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Net"
+        Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Net"
         & dotnet run
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-net') {
-        Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Sketch"
+        Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Sketch"
         & dotnet run
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
@@ -56,7 +56,7 @@ if ($mode -eq 'run_in_place') {
 } elseif ($mode -eq 'build_in_place') {
 
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
-        Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Multi"
+        Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Multi"
         & dotnet workload restore
         & dotnet build
         & dotnet publish -c Release Projects/Android/SKTemplate_Multi_Android.csproj
@@ -65,14 +65,14 @@ if ($mode -eq 'run_in_place') {
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-net') {
-        Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Net"
+        Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Net"
         & dotnet build
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
 
     if ($template -eq 'all' -or $template -eq 'sk-sketch') {
-        Push-Location -Path "$PSScriptRoot\templates\SKTemplate_Sketch"
+        Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Sketch"
         & dotnet build
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
@@ -82,7 +82,7 @@ if ($mode -eq 'run_in_place') {
         New-Item -Path . -Name 'test' -ItemType "directory" | Out-Null
     }
 
-    Push-Location -Path "$PSScriptRoot\test"
+    Push-Location -Path "$PSScriptRoot/test"
     $multiName = 'Multi-with_Crazy name'
     if (!(Test-Path -Path $multiName)) {
         New-Item -Path . -Name $multiName -ItemType "directory" | Out-Null
@@ -100,7 +100,7 @@ if ($mode -eq 'run_in_place') {
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
 
         Write-Host "## Testing sk-multi ##"
-        Push-Location -Path "$PSScriptRoot\test\$multiName"
+        Push-Location -Path "$PSScriptRoot/test/$multiName"
         & dotnet new sk-multi --allow-scripts Yes
         Write-Host "## Testing sk-multi - desktop ##"
         & dotnet run
@@ -111,7 +111,7 @@ if ($mode -eq 'run_in_place') {
 
     if ($template -eq 'all' -or $template -eq 'sk-net') {
         Write-Host "## Testing sk-net ##"
-        Push-Location -Path "$PSScriptRoot\test\$netName"
+        Push-Location -Path "$PSScriptRoot/test/$netName"
         & dotnet new sk-net
         & dotnet run
         Pop-Location
@@ -119,11 +119,11 @@ if ($mode -eq 'run_in_place') {
 
     if ($template -eq 'all' -or $template -eq 'sk-sketch') {
         Write-Host "## Testing sk-sketch ##"
-        Push-Location -Path "$PSScriptRoot\test\$sketchName"
+        Push-Location -Path "$PSScriptRoot/test/$sketchName"
         & dotnet new sk-sketch
         & dotnet run
         Pop-Location
     }
 
-    Remove-Item -Path "$PSScriptRoot\test" -Recurse -Force | Out-Null
+    Remove-Item -Path "$PSScriptRoot/test" -Recurse -Force | Out-Null
 }

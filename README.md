@@ -58,7 +58,7 @@ You can also build and deploy an APK like this! This was the only way to do it i
 dotnet publish -c Release Projects\Android\SKProjectName.Android.csproj
 
 # Install on device
-adb install Projects\Android\bin\Release\net9.0-android\publish\com.companyname.skprojectname-Signed.apk
+adb install Projects\Android\bin\Release\net10.0-android\publish\com.companyname.skprojectname-Signed.apk
 # Run the APK on device
 adb shell monkey -p com.companyname.skprojectname 1
 ```

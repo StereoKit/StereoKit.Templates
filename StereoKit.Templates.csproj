@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.8.4</PackageVersion>
+    <PackageVersion>0.9.0</PackageVersion> <!-- Requires a 3 number format, eg: 0.0.0 -->
     <PackageId>StereoKit.Templates</PackageId>
     <Title>StereoKit dotnet templates</Title>
     <Authors>StereoKit</Authors>
@@ -13,7 +13,7 @@
     <Description>Dotnet new templates for making StereoKit .NET Core compatible projects via CLI.</Description>
     <PackageTags>dotnet-new;templates;stereokit</PackageTags>
 
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
 
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
