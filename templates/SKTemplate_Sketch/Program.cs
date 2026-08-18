@@ -1,4 +1,8 @@
-﻿using StereoKit;
+﻿// To run:
+// dotnet run
+// dotnet run -p:Android=1
+
+using StereoKit;
 
 SK.Initialize();
 SK.Run(() => {

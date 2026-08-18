@@ -4,7 +4,7 @@
 	"classifications": [ "StereoKit", "Desktop", "Windows", "Linux", "Android" ],
 	"identity": "StereoKitTemplate.MultitargetProject",
 	"name": "StereoKit: Multitarget project",
-	"description": "A cross-platform starter template for Mixed Reality desktop VR projects using StereoKit and .NET Core!",
+	"description": "A cross-platform starter template for Mixed Reality projects using StereoKit and .NET Core! Deploys to Android XR devices like Quest, as well as desktop Windows and Linux.",
 	"shortName": "sk-multi",
 	"tags": {
 		"language": "C#",

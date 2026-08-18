@@ -1,16 +1,21 @@
 {
 	"$schema": "http://json.schemastore.org/template",
 	"author": "StereoKit",
-	"classifications": [ "StereoKit", "Desktop" ],
+	"classifications": [ "StereoKit", "Desktop", "Windows", "Linux", "Android" ],
 	"identity": "StereoKitTemplates.NetCoreSketch",
 	"name": "StereoKit: Sketch",
-	"description": "A bare-bones StereoKit Mixed Reality template for small code sketches, based on .NET Core.",
+	"description": "A bare-bones StereoKit Mixed Reality template for small code sketches, for Android/Windows/Linux.",
 	"shortName": "sk-sketch",
 	"tags": {
 		"language": "C#",
 		"type": "project"
 	},
 	"sourceName": "SKTemplate_Sketch.1",
+	"sources":[{
+		"modifiers": [
+			{ "exclude": [ ".vs/**/*"] }
+		]
+	}],
 	"primaryOutputs": [{
 		"path": "SKTemplate_Sketch.1.csproj"
 	}],
@@ -18,6 +23,16 @@
 		"description": "Restore NuGet packages required by this project.",
 		"manualInstructions": [ { "text": "Run 'dotnet restore'" } ],
 		"actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+		"continueOnError": true
+	},{
+		"description": "Restore required .NET workloads (e.g., Android).",
+		"manualInstructions": [{ "text": "Run 'dotnet workload restore'" }],
+		"actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+		"args": {
+			"executable": "dotnet",
+			"args": "workload restore",
+			"redirectStandardOutput": false
+		},
 		"continueOnError": true
 	}],
 	"symbols": {

@@ -13,7 +13,7 @@ To test the templates without build/reinstall
 param(
     [ValidateSet('run_in_place','build_in_place','new','none')]
     [string]$mode = 'none',
-    [ValidateSet('all','sk-multi','sk-net','sk-sketch')]
+    [ValidateSet('all','sk-multi','sk-net','sk-sketch','sk-script')]
     [string]$template = 'all',
     [switch]$reinstall = $false
 )
@@ -35,7 +35,7 @@ if ($mode -eq 'run_in_place') {
     if ($template -eq 'all' -or $template -eq 'sk-multi') {
         Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Multi"
         & dotnet run
-        & dotnet publish -c Release Projects/Android/SKTemplate_Multi_Android.csproj
+        & dotnet publish -c Release Projects/Android/SKTemplate_Multi.1.Android.csproj
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
@@ -47,7 +47,7 @@ if ($mode -eq 'run_in_place') {
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
 
-    if ($template -eq 'all' -or $template -eq 'sk-net') {
+    if ($template -eq 'all' -or $template -eq 'sk-sketch') {
         Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Sketch"
         & dotnet run
         Pop-Location
@@ -59,7 +59,7 @@ if ($mode -eq 'run_in_place') {
         Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Multi"
         & dotnet workload restore
         & dotnet build
-        & dotnet publish -c Release Projects/Android/SKTemplate_Multi_Android.csproj
+        & dotnet publish -c Release Projects/Android/SKTemplate_Multi.1.Android.csproj
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
@@ -73,7 +73,16 @@ if ($mode -eq 'run_in_place') {
 
     if ($template -eq 'all' -or $template -eq 'sk-sketch') {
         Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Sketch"
+        & dotnet workload restore
         & dotnet build
+        & dotnet publish -c Release -p:Android=1 -f net10.0-android
+        Pop-Location
+        if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
+    }
+
+    if ($template -eq 'all' -or $template -eq 'sk-script') {
+        Push-Location -Path "$PSScriptRoot/templates/SKTemplate_Script"
+        & dotnet build SKTemplate_Script.1.cs
         Pop-Location
         if ($LASTEXITCODE -ne 0) { return $LASTEXITCODE }
     }
@@ -94,6 +103,10 @@ if ($mode -eq 'run_in_place') {
     $sketchName = "Sketch Project"
     if (!(Test-Path -Path $sketchName)) {
         New-Item -Path . -Name $sketchName -ItemType "directory" | Out-Null
+    }
+    $scriptName = "Script Project"
+    if (!(Test-Path -Path $scriptName)) {
+        New-Item -Path . -Name $scriptName -ItemType "directory" | Out-Null
     }
     Pop-Location
 
@@ -117,11 +130,22 @@ if ($mode -eq 'run_in_place') {
         Pop-Location
     }
 
+    if ($template -eq 'all' -or $template -eq 'sk-script') {
+        Write-Host "## Testing sk-script ##"
+        Push-Location -Path "$PSScriptRoot/test/$scriptName"
+        & dotnet new sk-script
+        & dotnet run "$($scriptName).cs"
+        Pop-Location
+    }
+
     if ($template -eq 'all' -or $template -eq 'sk-sketch') {
         Write-Host "## Testing sk-sketch ##"
         Push-Location -Path "$PSScriptRoot/test/$sketchName"
-        & dotnet new sk-sketch
+        & dotnet new sk-sketch --allow-scripts Yes
+        Write-Host "## Testing sk-sketch - desktop ##"
         & dotnet run
+        Write-Host "## Testing sk-sketch - android ##"
+        & dotnet publish -c Release -p:Android=1 -f net10.0-android
         Pop-Location
     }
 

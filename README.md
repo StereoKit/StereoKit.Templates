@@ -80,7 +80,7 @@ dotnet new skshader-unlit -n test_shader -o Assets
 dotnet new skshader-lit -n test_lit_shader -o Assets
 
 # Add a basic IStepper template called SomeSystem
-dotnet new skstepper -n SomeSystem.cs
+dotnet new skstepper -n SomeSystem
 ```
 
 ## Templates
@@ -91,7 +91,8 @@ dotnet new skstepper -n SomeSystem.cs
 |---------|-----------|----------------------------------------------------|
 |sk-net   |.NET Core  |Simpler project for Windows and Linux desktop XR.   |
 |sk-multi |Multitarget|Cross-platform project for Android/Windows/Linux XR.|
-|sk-sketch|.NET Core  |Bare-bones XR template for small code sketches.     |
+|sk-sketch|Multitarget|Bare-bones XR sketches for Android/Windows/Linux.   |
+|sk-script|Single file|One file XR app, run it with 'dotnet run'.          |
 
 ### Item templates:
 

@@ -1,12 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
-  </PropertyGroup>
+		<!--Single project Android builds
+			dotnet run                - run on this desktop
+			dotnet run -p:Android=1   - deploy and run on a device-->
+		<TargetFrameworks>net10.0</TargetFrameworks>
+		<TargetFrameworks Condition="'$(Android)' == '1' Or '$(Android)' == 'true'">net10.0-android</TargetFrameworks>
 
-  <ItemGroup>
-    <PackageReference Include="StereoKit" Version="0.3.11" />
-  </ItemGroup>
-  
+		<RootNamespace>SKTemplate_Sketch._1</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
+		<SupportedOSPlatformVersion>29</SupportedOSPlatformVersion>
+		<ApplicationId>com.companyname.sktemplate_sketch._1</ApplicationId>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<AndroidManifest>Platforms\Android\AndroidManifest.xml</AndroidManifest>
+		<SKOpenXRLoader>Standard</SKOpenXRLoader>
+		<TargetType>Exe</TargetType> <!--To enable top-level entry points on Android.-->
+
+		<!--Suppress targetSdkVersion 29 warnings. XR devices use old versions
+				of Android.-->
+		<NoWarn>XA4211;XA1006;XA4301</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
+		<Compile Remove="Platforms\Android\**" />
+		<None    Include="Platforms\Android\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="StereoKit" Version="0.3.11" />
+	</ItemGroup>
+
 </Project>

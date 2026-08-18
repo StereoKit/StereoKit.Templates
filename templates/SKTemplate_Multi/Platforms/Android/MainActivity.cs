@@ -22,7 +22,6 @@ public class MainActivity : Activity, ISurfaceHolderCallback2
 	{
 		base.OnCreate(savedInstanceState);
 		Run();
-		SetContentView(Resource.Layout.activity_main);
 	}
 
 	protected override void OnDestroy()
@@ -56,26 +55,24 @@ public class MainActivity : Activity, ISurfaceHolderCallback2
 
 	static void InvokeStereoKit()
 	{
-		Type       entryClass = typeof(Program);
-		MethodInfo entryPoint = entryClass?.GetMethod("Main", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-		
-		// There are a number of potential method signatures for Main, so
-		// we need to check each one, and give it the correct values.
-		//
-		// Converting MethodInfo into an Action instead of calling Invoke on
-		// it allows for exceptions to properly bubble up to the IDE.
-		ParameterInfo[] entryParams = entryPoint?.GetParameters();
-		if (entryParams == null || entryParams.Length == 0)
-		{
-			Action Program_Main = (Action)Delegate.CreateDelegate(typeof(Action), entryPoint);
-			Program_Main();
-		}
-		else if (entryParams?.Length == 1 && entryParams[0].ParameterType == typeof(string[]))
-		{
-			Action<string[]> Program_Main = (Action<string[]>)Delegate.CreateDelegate(typeof(Action<string[]>), entryPoint);
-			Program_Main(new string[] { });
-		}
-		else throw new Exception("Couldn't invoke Program.Main!");
+		MethodInfo entryPoint = typeof(MainActivity).Assembly.EntryPoint
+			?? throw new Exception("Couldn't find the app's entry point!");
+
+		// Entry points come in a variety of flavors, parse out how we need to
+		// invoke.
+		ParameterInfo[] entryParams = entryPoint.GetParameters();
+		bool     noArgs  = entryParams.Length == 0;
+		bool     hasArgs = entryParams.Length == 1 && entryParams[0].ParameterType == typeof(string[]);
+		bool     retVoid = entryPoint.ReturnType == typeof(void);
+		bool     retInt  = entryPoint.ReturnType == typeof(int);
+		string[] args    = new string[] { };
+
+		// Calling as a delegate allows nice exception bubbling.
+		if      (noArgs  && retVoid) ((Action)             Delegate.CreateDelegate(typeof(Action),             entryPoint))();
+		else if (noArgs  && retInt ) ((Func<int>)          Delegate.CreateDelegate(typeof(Func<int>),          entryPoint))();
+		else if (hasArgs && retVoid) ((Action<string[]>)   Delegate.CreateDelegate(typeof(Action<string[]>),   entryPoint))(args);
+		else if (hasArgs && retInt ) ((Func<string[],int>) Delegate.CreateDelegate(typeof(Func<string[],int>), entryPoint))(args);
+		else throw new Exception("Couldn't invoke the app's entry point!");
 
 		Process.KillProcess(Process.MyPid());
 	}

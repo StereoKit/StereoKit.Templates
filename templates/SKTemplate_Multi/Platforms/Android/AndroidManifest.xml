@@ -4,7 +4,7 @@
 	
 	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:label="@string/app_name" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true">
 		<!-- Oculus -->
-		<meta-data android:name="com.oculus.supportedDevices" android:value="quest|quest2|quest3|questpro"/>
+		<meta-data android:name="com.oculus.supportedDevices" android:value="quest|quest2|quest3|quest3s|questpro"/>
 		<meta-data android:name="com.oculus.handtracking.version" android:value="V2.0"/>
 		<uses-native-library android:name="libopenxr_forwardloader.oculus.so" android:required="false"/>
 		<!-- Pico -->
@@ -13,13 +13,12 @@
 		<!-- Snapdragon -->
 		<meta-data android:name="spaces.version" android:value="0.15.0"/>
 		<!-- AndroidXR -->
-		<property android:name="android.window.PROPERTY_XR_ACTIVITY_START_MODE" android:value="XR_ACTIVITY_START_MODE_FULL_SPACE_UNMANAGED" />
+		<property android:name="android.window.PROPERTY_ACTIVITY_XR_START_MODE" android:value="XR_ACTIVITY_START_MODE_FULL_SPACE_UNMANAGED" />
 		<uses-native-library android:name="libopenxr.google.so" android:required="false"/>
 	</application>
 
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.RECORD_AUDIO" />
-	<uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
 	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
 	<!-- Generic OpenXR items -->
@@ -43,8 +42,12 @@
 	<uses-permission android:name="android.permission.EYE_TRACKING_FINE" />
 
 	<!-- Vive specific items  -->
-	<uses-feature android:name="wave.feature.handtracking" android:required="false"/>
-	<uses-feature android:name="wave.feature.tracker"      android:required="false"/>
+	<meta-data    android:name="no_controller_pairing"        android:value="true" />
+	<uses-feature android:name="wave.feature.handtracking"    android:required="false"/>
+	<uses-feature android:name="wave.feature.tracker"         android:required="false"/>
+	<uses-feature android:name="wave.feature.eyetracking"     android:required="false"/>
+	<uses-feature android:name="wave.feature.sceneperception" android:required="false"/>
+	<uses-feature android:name="wave.feature.marker"          android:required="false"/>
 
 	<!-- Snapdragon specific items -->
 	<uses-permission android:name="com.qualcomm.qti.qxr.QXRServiceClientPermission" android:required="false"/>
@@ -59,7 +62,10 @@
 	<uses-permission android:name="com.oculus.permission.BODY_TRACKING"/>
 	<uses-permission android:name="com.oculus.permission.FACE_TRACKING"/>
 	<uses-permission android:name="com.oculus.permission.EYE_TRACKING"/>
+	<uses-permission android:name="com.oculus.permission.USE_SCENE"/>
+	<uses-permission android:name="com.oculus.permission.RENDER_MODEL"/>
 	<uses-feature    android:name="com.oculus.feature.PASSTHROUGH"    android:required="false"/>
+	<uses-feature    android:name="com.oculus.feature.RENDER_MODEL"   android:required="false"/>
 	<uses-feature    android:name="oculus.software.handtracking"      android:required="false"/>
 	<uses-feature    android:name="com.oculus.software.body_tracking" android:required="false"/>
 	<uses-feature    android:name="oculus.software.face_tracking"     android:required="false"/>

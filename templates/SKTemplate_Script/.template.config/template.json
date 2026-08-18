@@ -1,0 +1,17 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "StereoKit",
+	"classifications": [ "StereoKit", "Desktop", "Windows", "Linux" ],
+	"identity": "StereoKitTemplates.Script",
+	"name": "StereoKit: Script",
+	"description": "A single file StereoKit Mixed Reality app, no project needed! Run it with 'dotnet run file.cs', requires a .NET 10 or newer SDK.",
+	"shortName": "sk-script",
+	"tags": {
+		"language": "C#",
+		"type": "project"
+	},
+	"sourceName": "SKTemplate_Script.1",
+	"primaryOutputs": [{
+		"path": "SKTemplate_Script.1.cs"
+	}]
+}
